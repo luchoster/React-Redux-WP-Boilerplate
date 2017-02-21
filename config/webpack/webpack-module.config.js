@@ -12,27 +12,20 @@ const loaders = options => ({
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['react', 'es2015']
-            }
-          }
-        ]
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader']
         }),
       },
       {
         test: /\.(sass|scss)$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader!sass-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
         })
       },
       {
